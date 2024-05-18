@@ -14,11 +14,11 @@ const Statistics = (props) => {
   const percent = (props.in.good / sum) * 100
   
   return(
-    <span>
+    <>
       <Display text={"all"} number={sum}/>
       <Display text={"average"} number={avg}/>
       <Display text={"positive"} number={percent} symbol={"%"}/>
-    </span>
+    </>
   )
 }
 
