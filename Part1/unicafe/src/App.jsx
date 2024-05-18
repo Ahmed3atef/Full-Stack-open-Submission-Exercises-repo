@@ -9,10 +9,20 @@ const Button = ({onHit, text}) => {
 }
 
 const Statistics = (props) => {
-  const sum = props.in.good + props.in.neutral + props.in.bad
-  const avg = props.in.good / sum
-  const percent = (props.in.good / sum) * 100
+  const good = props.in.good
+  const neutral = props.in.neutral
+  const bad = props.in.bad
+  const sum = good + neutral + bad
+  const avg = good / sum
+  const percent = (good / sum) * 100
   
+  if (sum === 0){
+    return (
+      <>
+      <Display  text={"No feedback given"}/>
+      </>
+    )
+  }
   return(
     <>
       <Display text={"all"} number={sum}/>
