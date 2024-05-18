@@ -19,24 +19,25 @@ const Statistics = (props) => {
   if (sum === 0){
     return (
       <>
-      <Display  text={"No feedback given"}/>
+      <StatisticLine  text={"No feedback given"}/>
       </>
     )
   }
   return(
-    <>
-      <Display text={"all"} number={sum}/>
-      <Display text={"average"} number={avg}/>
-      <Display text={"positive"} number={percent} symbol={"%"}/>
+    <> 
+      <StatisticLine text={"good"} number={good}/>
+      <StatisticLine text={"neutral"} number={neutral}/>
+      <StatisticLine text={"bad"} number={bad}/>
+      <StatisticLine text={"all"} number={sum}/>
+      <StatisticLine text={"average"} number={avg}/>
+      <StatisticLine text={"positive "} number={percent} symbol={"%"}/>
     </>
   )
 }
 
-const Display = ({text, number, symbol}) =>{
+const StatisticLine  = ({text, number, symbol}) =>{
   return (
-    <p>
-      {text} {number} {symbol}
-    </p>
+    <p>{text} {number} {symbol}</p>
   )
 }
 
@@ -53,9 +54,6 @@ const App = () => {
       <Button onHit={() => setNeutral(neutral + 1)} text={"Neutral"}/>
       <Button onHit={() => setBad(bad + 1)} text={"Bad"}/>
       <h1>statistics</h1>
-      <Display text={"good"} number={good}/>
-      <Display text={"neutral"} number={neutral}/>
-      <Display text={"bad"} number={bad}/>
       <Statistics in={{"good":good, "neutral":neutral, "bad":bad}}/>
     </div>
   )
