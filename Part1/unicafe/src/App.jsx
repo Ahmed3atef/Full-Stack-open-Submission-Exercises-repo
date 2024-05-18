@@ -25,19 +25,50 @@ const Statistics = (props) => {
   }
   return(
     <> 
-      <StatisticLine text={"good"} number={good}/>
-      <StatisticLine text={"neutral"} number={neutral}/>
-      <StatisticLine text={"bad"} number={bad}/>
-      <StatisticLine text={"all"} number={sum}/>
-      <StatisticLine text={"average"} number={avg}/>
-      <StatisticLine text={"positive "} number={percent} symbol={"%"}/>
+      <StatisticTable
+      names={["good", "netural", "bad", "all", "average", "positive"]}
+      values={[good, neutral, bad, sum, avg, percent]}
+      />
     </>
   )
 }
 
-const StatisticLine  = ({text, number, symbol}) =>{
+const StatisticLine  = ({text, number, symbol}) => {
   return (
     <p>{text} {number} {symbol}</p>
+  )
+}
+
+const StatisticTable = (props) => {
+  return(
+    <table>
+      <thead>
+        <tr>
+          <td>{props.names[0]}</td>
+          <td>{props.values[0]}</td>
+        </tr>
+        <tr>
+          <td>{props.names[1]}</td>
+          <td>{props.values[1]}</td>
+        </tr>
+        <tr>
+          <td>{props.names[2]}</td>
+          <td>{props.values[2]}</td>
+        </tr>
+        <tr>
+          <td>{props.names[3]}</td>
+          <td>{props.values[3]}</td>
+        </tr>
+        <tr>
+          <td>{props.names[4]}</td>
+          <td>{props.values[4]}</td>
+        </tr>
+        <tr>
+          <td>{props.names[5]}</td>
+          <td>{props.values[5]} %</td>
+        </tr>
+      </thead>
+    </table>
   )
 }
 
