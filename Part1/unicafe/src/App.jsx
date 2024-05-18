@@ -8,10 +8,24 @@ const Button = ({onHit, text}) => {
   )
 }
 
-const Display = ({text, number}) =>{
+const Statistics = (props) => {
+  const sum = props.in.good + props.in.neutral + props.in.bad
+  const avg = props.in.good / sum
+  const percent = (props.in.good / sum) * 100
+  
+  return(
+    <span>
+      <Display text={"all"} number={sum}/>
+      <Display text={"average"} number={avg}/>
+      <Display text={"positive"} number={percent} symbol={"%"}/>
+    </span>
+  )
+}
+
+const Display = ({text, number, symbol}) =>{
   return (
     <p>
-      {text} {number}
+      {text} {number} {symbol}
     </p>
   )
 }
@@ -32,6 +46,7 @@ const App = () => {
       <Display text={"good"} number={good}/>
       <Display text={"neutral"} number={neutral}/>
       <Display text={"bad"} number={bad}/>
+      <Statistics in={{"good":good, "neutral":neutral, "bad":bad}}/>
     </div>
   )
   
