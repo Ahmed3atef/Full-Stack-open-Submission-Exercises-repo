@@ -6,6 +6,12 @@ const Button = (props) => {
   )
 }
 
+const voteAdd = (props) => {
+  const vCopy = [...props.votes]
+  vCopy[props.selected] += 1
+  return vCopy
+}
+
 
 const App = () => {
   const anecdotes = [
@@ -19,23 +25,27 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
 
+  const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState([0,0,0,0,0,0,0,0])
+
   function Ranomizing(){
     const max = anecdotes.length 
     let newSelected = Math.round(Math.random(selected / max) * 10)
     if (newSelected >= max){
       newSelected = max - 1
     }
-    console.log(newSelected)
     return newSelected
   }
-
-  const [selected, setSelected] = useState(0)
-
+  
   return (
     <div>
       <div>
         {anecdotes[selected]}
       </div>
+      <div>
+        has {votes[selected]} votes
+      </div>
+      <Button onClick={() => setVotes(voteAdd({votes, selected}))} text="Vote" />
       <Button onClick={() => setSelected(Ranomizing())} text="next anecdote"/>
     </div>
   )
@@ -44,3 +54,4 @@ const App = () => {
 export default App
 
 // 1.12*: anecdotes step 1 (Done)
+// 1.13*: anecdotes step 2 (Done)
