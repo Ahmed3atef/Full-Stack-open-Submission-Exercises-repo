@@ -43,13 +43,9 @@ const App = () => {
     const max = anecdotes.length 
     let newSelected
     while (true){
-      newSelected = Math.round(Math.random(selected / max) * 10)
+      newSelected = Math.round(Math.random() * max)
       if (newSelected !== selected) {break}
     }
-    if (newSelected >= max){
-      newSelected = max - 1
-    }
-    
   }
   console.log(votes)
   console.log(votes[voteStar])
