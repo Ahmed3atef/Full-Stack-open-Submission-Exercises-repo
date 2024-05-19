@@ -41,11 +41,15 @@ const App = () => {
 
   function Ranomizing(){
     const max = anecdotes.length 
-    let newSelected = Math.round(Math.random(selected / max) * 10)
+    let newSelected
+    while (true){
+      newSelected = Math.round(Math.random(selected / max) * 10)
+      if (newSelected !== selected) {break}
+    }
     if (newSelected >= max){
       newSelected = max - 1
     }
-    return newSelected
+    
   }
   console.log(votes)
   console.log(votes[voteStar])
