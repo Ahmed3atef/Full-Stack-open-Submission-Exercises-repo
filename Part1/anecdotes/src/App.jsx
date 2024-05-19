@@ -6,10 +6,20 @@ const Button = (props) => {
   )
 }
 
-const voteAdd = (props) => {
+const VoteAdd = (props) => {
   const vCopy = [...props.votes]
   vCopy[props.selected] += 1
   return vCopy
+}
+
+const MaxVote = (props) => {
+  const vCopy = [...props.votes]
+
+  const result = vCopy.reduce(
+    (accumulator, initValue) => Math.max(accumulator, initValue),
+    vCopy[0]
+  )
+  return result
 }
 
 
@@ -27,6 +37,7 @@ const App = () => {
 
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState([0,0,0,0,0,0,0,0])
+  const voteStar = MaxVote({votes})
 
   function Ranomizing(){
     const max = anecdotes.length 
@@ -36,18 +47,26 @@ const App = () => {
     }
     return newSelected
   }
-  
+  console.log(votes)
+  console.log(votes[voteStar])
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <div>
         {anecdotes[selected]}
       </div>
       <div>
         has {votes[selected]} votes
       </div>
-      <Button onClick={() => setVotes(voteAdd({votes, selected}))} text="Vote" />
+      <Button onClick={() => setVotes(VoteAdd({votes, selected}))} text="Vote" />
       <Button onClick={() => setSelected(Ranomizing())} text="next anecdote"/>
+
+      <h1>Anecdote with most votes</h1>
+      <div>{anecdotes[votes.indexOf(voteStar)]}</div>
+      <div>has {voteStar} votes</div>
+      
     </div>
+
   )
 }
 
@@ -55,3 +74,4 @@ export default App
 
 // 1.12*: anecdotes step 1 (Done)
 // 1.13*: anecdotes step 2 (Done)
+// 1.14*: anecdotes step 3 (Done)
