@@ -39,12 +39,12 @@ const App = () => {
   const [votes, setVotes] = useState([0,0,0,0,0,0,0,0])
   const voteStar = MaxVote({votes})
 
-  function Ranomizing(){
+  function Randomizing(){
     const max = anecdotes.length 
     let newSelected
     while (true){
       newSelected = Math.round(Math.random() * max)
-      if (newSelected !== selected) {break}
+      if (newSelected !== selected) return newSelected
     }
   }
   console.log(votes)
@@ -59,7 +59,7 @@ const App = () => {
         has {votes[selected]} votes
       </div>
       <Button onClick={() => setVotes(VoteAdd({votes, selected}))} text="Vote" />
-      <Button onClick={() => setSelected(Ranomizing())} text="next anecdote"/>
+      <Button onClick={() => setSelected(Randomizing())} text="next anecdote"/>
 
       <h1>Anecdote with most votes</h1>
       <div>{anecdotes[votes.indexOf(voteStar)]}</div>
