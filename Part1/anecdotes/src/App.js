@@ -43,12 +43,11 @@ const App = () => {
     const max = anecdotes.length 
     let newSelected
     while (true){
-      newSelected = Math.round(Math.random() * max)
+      newSelected = Math.round(Math.random() * (max - 1))
       if (newSelected !== selected) return newSelected
     }
   }
-  console.log(votes)
-  console.log(votes[voteStar])
+
   return (
     <div>
       <h1>Anecdote of the day</h1>
