@@ -1,6 +1,6 @@
 const Dispaly = (props) => {
     return(
-        props.persons.map((person) => <li key={person.name} >{person.name}</li> )
+        props.persons.map((person) => <li key={person.id} >{person.name} {person.number}</li> )
     )
 }
 
