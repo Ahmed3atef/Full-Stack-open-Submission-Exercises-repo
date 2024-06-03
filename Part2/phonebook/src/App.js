@@ -6,6 +6,7 @@ const App = () => {
     { name: 'Arto Hellas' }
   ]) 
   const [newName, setNewName] = useState('')
+  const [duplicate, setDuplicate] = useState(false)
 
   const handNameChange = (event) => {
     setNewName(event.target.value)
@@ -16,8 +17,13 @@ const App = () => {
     const newPersonOpject = {
       name: newName
     }
-    setPersons(persons.concat(newPersonOpject))
-    setNewName('')
+    setDuplicate(persons.filter((person) => person.name === newName))
+    if (duplicate){      
+      alert(`${newName} is already added to phonebook`)
+    }else{
+      setPersons(persons.concat(newPersonOpject))
+      setNewName('')
+    }
   }
 
   return (
@@ -25,8 +31,7 @@ const App = () => {
       <h2>Phonebook</h2>
       <form onSubmit={addPerson}>
         <div>
-          name: <input onChange={handNameChange} />
-          
+          name: <input onChange={handNameChange} />          
         </div>
         <div>
           <button type="submit">add</button>
@@ -36,6 +41,7 @@ const App = () => {
       <ul>
         <Dispaly persons={persons}></Dispaly>
       </ul>
+      <div>debug:{persons.map((person) => person.name)}</div>
     </div>
   )
 }
